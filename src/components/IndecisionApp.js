@@ -1,108 +1,97 @@
 import React from 'react';
-
+import { connect } from 'react-redux';
 import AddOption from './AddOption';
 import Options from './Options';
 import Action from './Action';
 import Header from './Header';
 import OptionModal from './OptionModal';
+import { startResetTodos, startDeleteTodo, startAddTodo } from '../actions/todos';
 
-export default class IndecisionApp extends React.Component {
-    state = {
-        options: []
-    };
+export class IndecisionApp extends React.Component {
+  state = {
+    selectedOption: undefined
+  };
 
-    handleDeleteOptions = () => {
-        this.setState(() => ({ options: [] }));
+  /*handleDeleteOptions = () => {
+      dispatch(resetTodos());
+  }
+
+  handleDeleteOption = (todoToRemove) => {
+      dispatch(removeTodo(todoToRemove))
+      /*this.setState((prevState) => {
+          return {
+              options: prevState.options.filter((option) => {
+                  return option != optionToRemove;
+              })
+          };
+      });*/
+  //}
+
+  handleAddTodo = (todo) => {
+    if (!todo) {
+      return 'Enter valid value to add item!';
+    } else if (this.props.todos.indexOf(todo) >= 0) {
+      return 'This option already exists!';
+    } else {
+      this.props.addTodo(todo);
+      /*this.setState((prevState) => {
+          return {
+              options: prevState.options.concat(option)
+          };
+      });*/
+
+      return false;
     }
+  }
 
-    handleClearSelectedOption = () => {
-        this.setState(() => ({ selectedOption: undefined }));
-    }
+  handlePick = () => {
+    const pick = Math.floor(Math.random() * this.props.todos.length);
+    const todo = this.props.todos[pick];
+    this.setState(() => ({
+      selectedOption: todo
+    }));
+  }
 
-    handleDeleteOption = (optionToRemove) => {
-        this.setState((prevState) => {
-            return {
-                options: prevState.options.filter((option) => {
-                    return option != optionToRemove;
-                })
-            };
-        });
-    }
+  handleClearSelectedOption = () => {
+    this.setState(() => ({ selectedOption: undefined }));
+  }
 
-    handleAddOption = (option) => {
-        if (!option) {
-            return 'Enter valid value to add item!';
-        } else if (this.state.options.indexOf(option) >= 0) {
-            return 'This option already exists!';
-        } else {
-            this.setState((prevState) => {
-                return {
-                    options: prevState.options.concat(option)
-                };
-            });
-
-            return false;
-        }
-    }
-
-    handlePick = () => {
-        const pick = Math.floor(Math.random() * this.state.options.length);
-        const option = this.state.options[pick];
-        this.setState(() => ({
-            selectedOption: option
-        }));
-    }
-
-    componentDidMount() {
-        try {
-            const json = localStorage.getItem('options');
-            const options = JSON.parse(json);
-
-            if (options) {
-                this.setState(() => ({ options }));
-            }
-        } catch (err) { }
-    }
-
-    componentDidUpdate(prevProps, prevState) {
-        if (prevState.options.length !== this.state.options.length) {
-            const json = JSON.stringify(this.state.options);
-            localStorage.setItem('options', json);
-        }
-    }
-
-    componentWillUnmount() {
-        localStorage.clear();
-    }
-
-    render() {
-        const subtitle = "Put your life in the hands of a computer";
-        return (
-            <div>
-                <Header subtitle={ subtitle } />
-                <div className='container'>
-                    <Action
-                        hasOptions={ this.state.options.length > 0 }
-                        handlePick={ this.handlePick }
-                    />
-                    <div className='widget'>
-                        <Options
-                            options={ this.state.options }
-                            handleDeleteOptions={ this.handleDeleteOptions }
-                            handleDeleteOption={ this.handleDeleteOption }
-                        />
-                        <AddOption handleAddOption={ this.handleAddOption }/>
-                    </div>
-                </div>
-                <OptionModal
-                    selectedOption={this.state.selectedOption}
-                    handleClearSelectedOption={this.handleClearSelectedOption}
-                />
-            </div>
-        );
-    }
+  render() {
+    const subtitle = "Put your life in the hands of a computer";
+    return (
+      <div>
+        <Header subtitle={subtitle} />
+        <div className='container'>
+          <Action
+            hasOptions={this.props.todos.length > 0}
+            handlePick={this.handlePick}
+          />
+          <div className='widget'>
+            <Options
+              todos={this.props.todos}
+              handleDeleteTodos={this.props.handleDeleteTodos}
+              handleDeleteTodo={this.props.handleDeleteTodo}
+            />
+            <AddOption handleAddTodo={this.handleAddTodo} />
+          </div>
+        </div>
+        <OptionModal
+          selectedOption={this.state.selectedOption}
+          handleClearSelectedOption={this.handleClearSelectedOption}
+        />
+      </div>
+    );
+  }
 }
 
-IndecisionApp.defaultProps = {
-    options: []
-};
+const mapStateToProps = (state) => ({
+  todos: state.todos
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  handleDeleteTodos: () => dispatch(startResetTodos()),
+  handleDeleteTodo: (todo) => dispatch(startDeleteTodo(todo)),
+  addTodo: (option) => dispatch(startAddTodo(option))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(IndecisionApp);

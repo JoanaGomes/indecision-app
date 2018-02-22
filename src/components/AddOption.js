@@ -7,15 +7,15 @@ export default class AddOption extends React.Component {
 
     constructor(props) {
         super(props);
-        this.handleAddOption = this.handleAddOption.bind(this);
+        this.handleAddTodo = this.handleAddTodo.bind(this);
     }
 
-    handleAddOption(evt) {
+    handleAddTodo(evt) {
         evt.preventDefault();
 
         const option = evt.target.elements.option.value.trim();
 
-        const error = this.props.handleAddOption(option);
+        const error = this.props.handleAddTodo(option);
         this.setState(() => ({ error }));
 
         // if (error) alert(error);
@@ -30,7 +30,7 @@ export default class AddOption extends React.Component {
                 }
                 <form
                     className='add-option' 
-                    onSubmit={ this.handleAddOption }
+                    onSubmit={ this.handleAddTodo }
                 >
                     <input className='add-option__input' type="text" name="option"/>
                     <button type="submit" className='button'>Add Option</button>

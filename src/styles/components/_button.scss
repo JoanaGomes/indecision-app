@@ -21,17 +21,27 @@
 }
 
 .button {
-    background: $purple;
-    border: none;
-    border-bottom: .3rem solid darken($purple, 10%);
-    color: white;
-    font-weight: 500;
-    padding: $s-size;
+  background: $purple;
+  border: none;
+  border-bottom: .3rem solid darken($purple, 10%);
+  color: white;
+  font-weight: 500;
+  padding: $s-size;
 }
 
 .button--link {
-    background: none;
-    border: none;
-    color: $off-white;
-    padding: 0;
+  background: none;
+  border: none;
+  color: $off-white;
+  padding: 0;
+}
+
+.button--with-icon {
+  border: none;
+  color: fade-out(white, .25);
+  display: flex;
+  font-size: 1.8rem;
+  justify-content: space-between;
+  margin: 1.2rem 0 0;
+  width: 20rem;
 }

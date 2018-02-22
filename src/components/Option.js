@@ -4,12 +4,12 @@ const Option = (props) => {
     return (
         <div className='option'>
             <p className='option__text'>
-                { `${props.count}. ${props.optionText}` }
+                { `${props.count}. ${props.todo.value}` }
             </p>
             <button
                 className='button button--link'
                 onClick={ () => {
-                    props.handleDeleteOption(props.optionText);
+                    props.handleDeleteTodo(props.todo);
                 }}
             >
                 Remove
