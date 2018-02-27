@@ -8,20 +8,20 @@ export const login = (uid, displayName, email, photoURL) => ({
   photoURL
 });
 
-export const logout = () => ({
-  type: 'LOG_OUT'
-});
-
 export const startLogin = (provider) => {
   return (dispatch) => {
       switch (provider) {
         case 'google':
-          return firebase.auth().signInWithPopup(googleAuthProvider);
+          firebase.auth().signInWithPopup(googleAuthProvider);
         case 'github':
-          return firebase.auth().signInWithPopup(githubAuthProvider);
+          firebase.auth().signInWithPopup(githubAuthProvider);
     }
   };
 };
+
+export const logout = () => ({
+  type: 'LOG_OUT'
+});
 
 export const startLogout = () => {
   return () => {

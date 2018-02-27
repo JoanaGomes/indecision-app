@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1519731569611" clover="3.2.0">
+  <project timestamp="1519731569611" name="All files">
+    <metrics statements="17" coveredstatements="13" conditionals="2" coveredconditionals="0" methods="6" coveredmethods="4" elements="25" coveredelements="17" complexity="0" loc="17" ncloc="17" packages="3" files="3" classes="3">
+      <package name="actions">
+        <metrics statements="10" coveredstatements="6" conditionals="2" coveredconditionals="0" methods="6" coveredmethods="4"/>
+        <file name="auth.js" path="/media/joana/Storage/Projects/tests/react-course-projects/indecision-app/src/actions/auth.js">
+          <metrics statements="10" coveredstatements="6" conditionals="2" coveredconditionals="0" methods="6" coveredmethods="4"/>
+          <line num="3" count="1" type="stmt"/>
+          <line num="11" count="1" type="stmt"/>
+          <line num="12" count="1" type="stmt"/>
+          <line num="13" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="15" count="0" type="stmt"/>
+          <line num="17" count="0" type="stmt"/>
+          <line num="22" count="1" type="stmt"/>
+          <line num="26" count="1" type="stmt"/>
+          <line num="27" count="1" type="stmt"/>
+          <line num="28" count="0" type="stmt"/>
+        </file>
+      </package>
+      <package name="firebase">
+        <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <file name="firebase.js" path="/media/joana/Storage/Projects/tests/react-course-projects/indecision-app/src/firebase/firebase.js">
+          <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="4" count="1" type="stmt"/>
+          <line num="13" count="1" type="stmt"/>
+          <line num="15" count="1" type="stmt"/>
+          <line num="16" count="1" type="stmt"/>
+          <line num="17" count="1" type="stmt"/>
+        </file>
+      </package>
+      <package name="tests">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <file name="setupTests.js" path="/media/joana/Storage/Projects/tests/react-course-projects/indecision-app/src/tests/setupTests.js">
+          <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="6" count="1" type="stmt"/>
+          <line num="11" count="1" type="stmt"/>
+        </file>
+      </package>
+    </metrics>
+  </project>
+</coverage>

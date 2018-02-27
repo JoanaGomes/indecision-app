@@ -42,7 +42,7 @@ export const startAddTodo = (todo) => {
   };
 };
 
-export const removeTodo = ({ id }) => ({
+export const deleteTodo = ({ id }) => ({
   type: 'REMOVE_TODO',
   id
 });
@@ -53,7 +53,7 @@ export const startDeleteTodo = ({ id }) => {
 
     return database.ref(`users/${uid}/todos/${id}`).remove()
       .then(() => {
-        dispatch(removeTodo({ id }))
+        dispatch(deleteTodo({ id }))
       });
     };
 };
